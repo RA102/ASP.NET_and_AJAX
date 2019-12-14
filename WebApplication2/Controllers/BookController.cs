@@ -71,10 +71,17 @@ namespace WebApplication2.Controllers
             
         }
 
+        [HttpPost]
         public ActionResult Delete(int id)
         {
+            using (Model1 db = new Model1()) 
+            {
+                var book = db.Books.Where(b => b.Id == id).FirstOrDefault();
+                db.Books.Remove(book);
+                db.SaveChanges();
 
-            return View();
+                return RedirectToAction("Index");
+            }    
         }
     }
 }
