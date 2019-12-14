@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -60,7 +61,14 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult Edit(Books book)
         {
-            return View();
+            using(Model1 db = new Model1()) 
+            {
+
+                db.Entry(book).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }           
+            
         }
 
         public ActionResult Delete(int id)
