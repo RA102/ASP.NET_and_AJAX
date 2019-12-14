@@ -73,6 +73,7 @@ namespace WebApplication2.Controllers
 
         public ActionResult Delete(int id)
         {
+
             return View();
         }
     }
